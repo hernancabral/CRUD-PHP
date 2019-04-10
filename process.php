@@ -8,6 +8,9 @@ $Nombre = '';
 $Usuario = '';
 $Email = '';
 $Imagen = '';
+$Codigo = '';
+$CodigoDisable = '';
+$UsuarioDisable = '';
 $update = false;
 $id = 0;
 
@@ -16,6 +19,7 @@ if (isset($_POST['save'])){
     $Usuario = $_POST['Usuario'];
     $Email = $_POST['Email'];
     $Imagen = $_POST['Imagen'];
+    $Codigo = $_POST['Codigo'];
 
     // insert into "tabla (columna1, col2) con los valores"
     $mysqli->query("INSERT INTO data (Nombre, Usuario, Email, URL) VALUES ('$Nombre', '$Usuario', '$Email', '$Imagen')") or die($mysqli->error);
@@ -46,6 +50,8 @@ if (isset($_GET['edit'])){
         $Usuario = $row['Usuario'];
         $Email = $row['Email'];
         $Imagen = $row['URL'];
+        $UsuarioDisable = 'disabled';
+        $CodigoDisable = 'disabled';
     }
 }
 

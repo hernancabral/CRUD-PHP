@@ -37,16 +37,18 @@
             //pre_r($result->fetch_assoc());
             //pre_r($result->fetch_assoc());
         ?>
-
+        <div class="jumbotron" style="text-align:center">
+            <h1>Glamit ABM</h1>
+        </div>
         <div class="row justify-content-center">
-            <table class="table">
+            <table class="table" style="text-align:center">
                 <thead>
                     <tr>
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Email</th>
                         <th>Imagen</th>
-                        <th colspan="4">Accion</th>
+                        <th colspan="3">Accion</th>
                     </tr>
                 </thead>
             <?php
@@ -55,14 +57,18 @@
                     <td><?php echo $row['Nombre'];?></td>
                     <td><?php echo $row['Usuario'];?></td>
                     <td><?php echo $row['Email'];?></td>
-                    <td><?php echo $row['URL'];?></td>
+                    <td><img src="<?php echo $row['URL'];?>" class="img-thumbnail" style="height:60px;width:60px"></td>
                     <td>
-                        <a href="index.php?edit=<?php echo $row['id'] ?>" class="btn btn-info">Edit</a>
-                        <a href="process.php?delete=<?php echo $row['id'] ?>" class="btn btn-danger">Delete</a>
+                        <a href="form.php?edit=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a>
+                        <a href="process.php?delete=<?php echo $row['id'] ?>" class="btn btn-danger">Borrar BD</a>
+                        <a href="process.php?edit=<?php echo $row['id'] ?>" class="btn btn-warning">Borrar Logicamente</a>
                     </td>
                 </tr>
                 <?php endwhile; ?>
             </table>
+            <div>
+                <a href="form.php" class="btn btn-info">Nuevo Registro</a>
+            </div>
         
         </div>
 
@@ -75,37 +81,7 @@
             };
         ?>
 
-        <div class="row justify-content-center">
-            <form action="process.php" method="post">
-                <input type="hidden" name='id' value='<?php echo $id; ?>'>
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" name="Nombre" class="form-control" value="<?php echo $Nombre; ?>" placeholder="Ingresa el Nombre">
-                </div>
-                <div class="form-group">
-                    <label>Usuario</label>
-                    <input type="text" name="Usuario" class="form-control" value="<?php echo $Usuario; ?>" placeholder="Ingresa el Usuario">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" name="Email" class="form-control" value="<?php echo $Email; ?>" placeholder="Ingresa el Email">
-                </div>
-                <div class="form-group">
-                    <label>Imagen</Label>
-                    <input type="text" name="Imagen" class="form-control" value="<?php echo $Imagen; ?>" placeholder="Ingresa la URL">
-                </div>
-                <div class="form-group">
-                    <?php 
-                    if ($update == true):
-                    ?>
-                        <button type="submit" name="update" class="btn btn-info">Editar</button>
-                    <?php else: ?>
-                    
-                    <button type="submit" name="save" class="btn btn-primary">Guardar</button>
-                    <?php endif; ?>
-                </div>
-            </form>
-        </div>
+        
     </div>   
 </body>
 </html>
