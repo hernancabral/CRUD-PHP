@@ -21,8 +21,7 @@ if (isset($_POST['save'])){
     $Imagen = $_POST['Imagen'];
     $Codigo = $_POST['Codigo'];
 
-    // insert into "tabla (columna1, col2) con los valores"
-    $mysqli->query("INSERT INTO data (Nombre, Usuario, Email, URL) VALUES ('$Nombre', '$Usuario', '$Email', '$Imagen')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO data (Nombre, Usuario, Email, URL, Codigo) VALUES ('$Nombre', '$Usuario', '$Email', '$Imagen', '$Codigo')") or die($mysqli->error);
 
     $_SESSION['message'] = "Se guardo correctamente!";
     $_SESSION['msg_type'] = 'success';
@@ -40,6 +39,18 @@ if (isset($_GET['delete'])){
     header("location: index.php");
 }
 
+if (isset($_GET['logdel'])){
+    $id = $_GET['logdel'];
+    echo $id;
+    $mysqli->query("UPDATE data SET Mostrar='0' WHERE id=$id")
+        or die($mysqli->error);
+
+    $_SESSION['message'] = "Se borro al usuario logicamente!";
+    $_SESSION['msg_type'] = "warning";
+
+    header('location: index.php');
+}
+
 if (isset($_GET['edit'])){
     $id = $_GET['edit'];
     $update = true;
@@ -50,6 +61,7 @@ if (isset($_GET['edit'])){
         $Usuario = $row['Usuario'];
         $Email = $row['Email'];
         $Imagen = $row['URL'];
+        $Codigo = $row['Codigo'];
         $UsuarioDisable = 'disabled';
         $CodigoDisable = 'disabled';
     }
@@ -58,15 +70,14 @@ if (isset($_GET['edit'])){
 if (isset($_POST['update'])){
     $id = $_POST['id'];
     $Nombre = $_POST['Nombre'];
-    $Usuario = $_POST['Usuario'];
     $Email = $_POST['Email'];
     $Imagen = $_POST['Imagen'];
 
-    $mysqli->query("UPDATE data SET Nombre='$Nombre', Usuario='$Usuario', Email='$Email', URL='$Imagen' WHERE id=$id")
+    $mysqli->query("UPDATE data SET Nombre='$Nombre', Email='$Email', URL='$Imagen' WHERE id=$id")
         or die($mysqli->error);
 
-    $_SESSION['message'] = "Record has been updated";
-    $_SESSION['msg_type'] = "warning";
+    $_SESSION['message'] = "Se edito el usuario correctamente!";
+    $_SESSION['msg_type'] = "success";
 
     header('location: index.php');
 }

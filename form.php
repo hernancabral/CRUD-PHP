@@ -19,6 +19,7 @@
 <?php require_once "process.php" ?>
 
 <div class="container">
+
     <div class="jumbotron" style="text-align:center">
         <h1>
             <?php 
@@ -30,6 +31,7 @@
             <?php endif; ?>
         </h1>
     </div>
+
     <div class="row justify-content-center">
             <form action="process.php" method="post">
                 <input type="hidden" name='id' value='<?php echo $id; ?>'>
@@ -65,6 +67,7 @@
                 </div>
             </form>
     </div>
+
 </div>
 </body>
 </html>

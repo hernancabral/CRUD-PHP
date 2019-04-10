@@ -30,16 +30,16 @@
     <?php endif ?>
 
     <div class="container">
+
         <?php
             $mysqli = new mysqli('localhost', 'root', '', 'abm') or die(mysqli_error($mysqli));
-            $result = $mysqli->query("SELECT * FROM data") or die($mysqli->error);
-            //pre_r($result);
-            //pre_r($result->fetch_assoc());
-            //pre_r($result->fetch_assoc());
+            $result = $mysqli->query("SELECT * FROM data WHERE Mostrar='1'") or die($mysqli->error);
         ?>
+
         <div class="jumbotron" style="text-align:center">
             <h1>Glamit ABM</h1>
         </div>
+
         <div class="row justify-content-center">
             <table class="table" style="text-align:center">
                 <thead>
@@ -61,27 +61,15 @@
                     <td>
                         <a href="form.php?edit=<?php echo $row['id'] ?>" class="btn btn-info">Editar</a>
                         <a href="process.php?delete=<?php echo $row['id'] ?>" class="btn btn-danger">Borrar BD</a>
-                        <a href="process.php?edit=<?php echo $row['id'] ?>" class="btn btn-warning">Borrar Logicamente</a>
+                        <a href="process.php?logdel=<?php echo $row['id'] ?>" class="btn btn-warning">Borrar Logicamente</a>
                     </td>
                 </tr>
                 <?php endwhile; ?>
             </table>
             <div>
                 <a href="form.php" class="btn btn-info">Nuevo Registro</a>
-            </div>
-        
-        </div>
-
-        <?php
-
-            function pre_r($array) {
-                echo "<pre>";
-                print_r($array);
-                echo "</pre>";
-            };
-        ?>
-
-        
+            </div>      
+        </div>        
     </div>   
 </body>
 </html>
